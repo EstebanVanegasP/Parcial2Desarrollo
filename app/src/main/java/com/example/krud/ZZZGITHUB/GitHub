@@ -1,0 +1,8 @@
+# Añadir todos los archivos del proyecto
+git add .
+
+# Realizar el commit con un mensaje adecuado
+git commit -m "proyecto Primer Commit"
+
+# Empujar los cambios al repositorio remoto
+git push
