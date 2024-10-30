@@ -64,14 +64,19 @@ fun UsuarioScreen(
 
             LazyColumn {
                 items(clientes) { cliente ->
-                    Row(
+                    Column(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .padding(8.dp),
-                        horizontalArrangement = Arrangement.SpaceBetween
+                            .padding(8.dp)
                     ) {
                         Text(text = "${cliente.nombre} (${cliente.correo})")
-                        Row {
+
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        Row(
+                            horizontalArrangement = Arrangement.Start,
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
                             Button(onClick = {
                                 clienteSeleccionado = cliente
                                 isDialogOpen = true
@@ -91,6 +96,7 @@ fun UsuarioScreen(
                     }
                 }
             }
+
         }
     }
 
