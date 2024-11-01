@@ -1,6 +1,8 @@
 package com.example.krud.Screen
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -58,10 +60,9 @@ fun ProductoScreen(navController: NavController, productoRepository: ProductoRep
             modifier = Modifier
                 .fillMaxSize()
                 .padding(paddingValues)
-                .padding(16.dp),
-            verticalArrangement = Arrangement.Top,
-            horizontalAlignment = Alignment.CenterHorizontally
+                .padding(16.dp)
         ) {
+            // Formulario fijo en la parte superior
             Text(text = "Gestión de Productos", style = MaterialTheme.typography.titleLarge)
 
             Spacer(modifier = Modifier.height(16.dp))
@@ -126,22 +127,25 @@ fun ProductoScreen(navController: NavController, productoRepository: ProductoRep
 
             Spacer(modifier = Modifier.height(16.dp))
 
-            productos.forEach { producto ->
-                Column(modifier = Modifier.padding(8.dp)) {
-                    Text(text = "Producto: ${producto.nombre}")
-                    Text(text = "Precio: ${producto.precio}")
-                    Text(text = "Stock: ${producto.stock}")
+            // Lista desplazable de productos
+            LazyColumn(modifier = Modifier.fillMaxSize()) {
+                items(productos) { producto ->
+                    Column(modifier = Modifier.padding(8.dp)) {
+                        Text(text = "Producto: ${producto.nombre}")
+                        Text(text = "Precio: ${producto.precio}")
+                        Text(text = "Stock: ${producto.stock}")
 
-                    Spacer(modifier = Modifier.height(8.dp))
+                        Spacer(modifier = Modifier.height(8.dp))
 
-                    Button(onClick = {
-                        productoAEliminar = producto
-                        isDialogOpen = true
-                    }) {
-                        Text(text = "Eliminar Producto")
+                        Button(onClick = {
+                            productoAEliminar = producto
+                            isDialogOpen = true
+                        }) {
+                            Text(text = "Eliminar Producto")
+                        }
                     }
+                    Spacer(modifier = Modifier.height(16.dp))
                 }
-                Spacer(modifier = Modifier.height(16.dp))
             }
         }
     }

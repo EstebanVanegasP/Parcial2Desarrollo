@@ -17,7 +17,8 @@ import kotlinx.coroutines.launch
 @Composable
 fun UsuarioScreen(
     navController: NavController,
-    clienteRepository: ClienteRepository
+    clienteRepository: ClienteRepository,
+    clienteId: Int
 ) {
     val scope = rememberCoroutineScope()
     val clientes = remember { mutableStateListOf<ClienteModel>() }
@@ -38,8 +39,8 @@ fun UsuarioScreen(
                 content = {
                     Spacer(modifier = Modifier.weight(1f))
                     IconButton(onClick = {
-                        navController.navigate("ppScreen") {
-                            popUpTo("ppScreen") { inclusive = true }
+                        navController.navigate("clienteScreen/$clienteId") {
+                            popUpTo("clienteScreen/$clienteId") { inclusive = false }
                         }
                     }) {
                         Icon(

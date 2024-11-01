@@ -54,9 +54,13 @@ fun AppNavigation(
         composable("ppScreen") {
             PpScreen(navController = navController)
         }
+
+
         composable("loginScreen") {
             LoginScreen(navController = navController, clienteRepository = clienteRepository)
         }
+
+
         composable("registroScreen") {
             RegistroScreen(navController = navController, clienteRepository = clienteRepository)
         }
@@ -93,10 +97,12 @@ fun AppNavigation(
                 clienteId = clienteId
             )
         }
-        composable("usuarioScreen") {
+        composable("usuarioScreen") { backStackEntry ->
+            val clienteId = backStackEntry.arguments?.getString("clienteId")?.toInt() ?: 0
             UsuarioScreen(
                 navController = navController,
-                clienteRepository = clienteRepository
+                clienteRepository = clienteRepository,
+                clienteId = clienteId
             )
         }
         composable("historialScreen/{clienteId}") { backStackEntry ->

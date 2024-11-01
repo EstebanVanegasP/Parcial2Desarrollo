@@ -81,9 +81,13 @@ fun VentaScreen(
                 }
 
                 Column(modifier = Modifier.padding(8.dp)) {
+                    var totalVenta by remember { mutableStateOf(0.0) }
+
                     Text(text = "Producto: $productoNombre")
                     Text(text = "Cantidad: ${venta.cantidad}")
                     Text(text = "Fecha: $formattedDate")
+                    Text(text = "Total: $${"%.2f".format(totalVenta)}")
+
                 }
                 Spacer(modifier = Modifier.height(16.dp))
             }
